@@ -1,13 +1,20 @@
-import "./App.css";
-import Header from "./components/header/Header";
-import Hero from "./components/hero/Hero";
+import { useEffect, useReducer } from "react";
+import Layout from "./components/Layout";
+import { StateContext } from "./context/Context";
+import { InitialState, basketReducer } from "./reducer/basketReducer";
+import Contacts from "./components/header/Contacts";
 
 function App() {
+  const [basketState, basketDispatch] = useReducer(basketReducer, InitialState);
+
+  useEffect(() => {
+    localStorage.setItem('basket', JSON.stringify(basketState.basket));
+  }, [basketState.basket]);
+
   return (
-    <>
-      <Header />
-      <Hero/>
-    </>
+    <StateContext.Provider value={{ basketState, basketDispatch }}>
+      <Layout />
+    </StateContext.Provider>
   );
 }
 
