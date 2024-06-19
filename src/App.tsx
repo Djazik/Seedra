@@ -2,7 +2,6 @@ import { useEffect, useReducer } from "react";
 import Layout from "./components/Layout";
 import { StateContext } from "./context/Context";
 import { InitialState, basketReducer } from "./reducer/basketReducer";
-import Contacts from "./components/header/Contacts";
 
 function App() {
   const [basketState, basketDispatch] = useReducer(basketReducer, InitialState);
